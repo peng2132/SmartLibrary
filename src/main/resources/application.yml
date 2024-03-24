@@ -1,0 +1,11 @@
+# 数据库连接配置
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/book_test?useSSL=false&allowPublicKeyRetrieval=true
+    username: root   # 数据库用户名
+    password: 11111  # 数据库密码
+    driver-class-name: com.mysql.cj.jdbc.Driver
+# 设置日志文件的文件名
+logging:
+  file:
+    name: /logger/spring-book.log
