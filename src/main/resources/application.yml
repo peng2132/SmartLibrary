@@ -6,6 +6,9 @@ spring:
     password: 11111  # 数据库密码
     driver-class-name: com.mysql.cj.jdbc.Driver
 # 设置日志文件的文件名
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
 logging:
   file:
     name: /logger/spring-book.log
