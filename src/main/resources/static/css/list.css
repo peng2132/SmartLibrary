@@ -1,0 +1,80 @@
+.bookContainer{
+    width: 60%;
+    margin: 3em auto;
+}
+.bookContainer h2{
+    text-align: center;
+    font-weight: bold;
+    margin: 1em 0;
+}
+
+.btn-outline-info{
+    margin-left: 10px;
+    /* border-color:#dee2e6 ; */
+}
+.navbar-justify-between{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.bookContainer .navbar .form-inline
+{
+    margin-right: 20px;
+}
+.book-select{
+    zoom: 130%;
+}
+.pagination{
+    margin-top: 30px;
+}
+.page-link {
+    color: #17a2b8;
+    /* border-color: #17a2b8; */
+}
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color:  #17a2b8;
+    border-color: #17a2b8;
+}
+table{
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+table caption{
+    font-size: 2em;
+    font-weight: bold;
+    margin: 1em 0;
+}
+
+th,td{
+    border: 1px solid #999;
+    text-align: center;
+    padding: 20px 0;
+}
+ 
+table thead tr{
+    background-color: #17a2b8;
+    color: #fff;
+}
+
+table tbody tr:nth-child(odd){
+    background-color: #eee;
+}
+table .op{
+    margin: 0 auto;
+    width: 35%;
+    display: flex;
+    justify-content: space-between;
+}
+td .width100{
+    width: 100px;
+}
+.width200{
+    width: 200px;
+}
+
+
+

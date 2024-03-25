@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修改图书</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/add.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="form-inline">
+            <h2 style="text-align: left; margin-left: 10px;"><svg xmlns="http://www.w3.org/2000/svg" width="40"
+                    fill="#17a2b8" class="bi bi-book-half" viewBox="0 0 16 16">
+                    <path
+                        d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
+                </svg>
+                <span>修改图书</span>
+            </h2>
+        </div>
+
+        <form id="updateBook">
+            <input type="hidden" class="form-control" id="bookId" name="id">
+            <div class="form-group">
+                <label for="bookName">图书名称:</label>
+                <input type="text" class="form-control" id="bookName" name="bookName">
+            </div>
+            <div class="form-group">
+                <label for="bookAuthor">图书作者</label>
+                <input type="text" class="form-control" id="bookAuthor" name="author" />
+            </div>
+            <div class="form-group">
+                <label for="bookStock">图书库存</label>
+                <input type="text" class="form-control" id="bookStock" name="count" />
+            </div>
+            <div class="form-group">
+                <label for="bookPrice">图书定价：</label>
+                <input type="number" class="form-control" id="bookPrice" name="price">
+            </div>
+            <div class="form-group">
+                <label for="bookPublisher">出版社</label>
+                <input type="text" id="bookPublisher" class="form-control" name="publish" />
+            </div>
+            <div class="form-group">
+                <label for="bookStatus">图书状态</label>
+                <select class="custom-select" id="bookStatus" name="status">
+                    <option value="1" selected>可借阅</option>
+                    <option value="2">不可借阅</option>
+                </select>
+            </div>
+            <div class="form-group" style="text-align: right">
+                <button type="button" class="btn btn-info btn-lg" onclick="update()">确定</button>
+                <button type="button" class="btn btn-secondary btn-lg" onclick="javascript:history.back()">返回</button>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script>
+
+        function update() {
+            alert("更新成功");
+            location.href = "book_list.html"
+        }
+
+
+    </script>
+</body>
+
+</html>

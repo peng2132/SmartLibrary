@@ -1,0 +1,19 @@
+.container {
+    width: 50%;
+    margin-top: 50px;
+    margin: 50px auto;
+}
+.container h2{
+    text-align: center;
+    font-weight: bold;
+    margin: 1em 0;
+}
+
+.form-group {
+    margin-top: 30px;
+    font-size: 18px;
+}
+.form-group .btn-lg{
+    width: 150px;
+    font-size: 1.25rem;
+}
