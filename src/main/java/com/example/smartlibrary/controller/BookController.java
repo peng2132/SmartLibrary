@@ -48,5 +48,26 @@ public class BookController {
         }
         return "";
     }
-
+    @RequestMapping("queryBookInfoById")
+    public BookInfo queryBookInfoById(Integer bookId){
+        log.info("查询图书信息,id:{}",bookId);
+        try{
+            BookInfo bookInfo = bookService.queryBookInfoById(bookId);
+            return bookInfo;
+        }
+        catch (Exception e){
+            log.error("查询图书信息错误,e{}",e);
+        }
+       return null;
+    }
+    @RequestMapping("updateBook")
+    public String updateBook(BookInfo bookInfo){
+        log.info("更新图书信息,bookInfo:{}",bookInfo);
+        Integer result = bookService.updateBook(bookInfo);
+        if(result <= 0){
+            log.error("更新图书信息失败,bookInfo:{}",bookInfo);
+            return "更新失败，请联系管理员";
+        }
+        return "";
+    }
 }

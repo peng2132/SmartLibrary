@@ -42,4 +42,10 @@ public class BookService {
         }
         return result;
     }
+    public BookInfo queryBookInfoById(Integer id) {
+        return bookInfoMapper.selectBookById(id);
+    }
+    public Integer updateBook(BookInfo bookInfo) {
+        return bookInfoMapper.updateBook(bookInfo);
+    }
 }
