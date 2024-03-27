@@ -12,7 +12,8 @@ public class BookInfo {
     private int count;
     private BigDecimal price;
     private String publish;
-    private Byte status;
+    private Byte status;  //0 删除，1 可借阅，2 不可借阅
+    private String statusCN;
     private Date createTime;
     private Date updateTime;
 }
