@@ -1,6 +1,7 @@
 package com.example.smartlibrary.mapper;
 
 import com.example.smartlibrary.model.BookInfo;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -16,4 +17,9 @@ public interface BookInfoMapper {
     //获取总记录数
     @Select("select count(1) from book_info where status != 0")
     Integer count();
+
+    //新增图书信息
+    @Insert("insert into book_info(book_name,author,count,price,publish,status) " +
+            "values(#{bookName},#{author},#{count},#{price},#{publish},#{status})")
+    Integer insertBook(BookInfo bookInfo);
 }

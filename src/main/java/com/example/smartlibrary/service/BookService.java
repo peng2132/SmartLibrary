@@ -5,12 +5,14 @@ import com.example.smartlibrary.mapper.BookInfoMapper;
 import com.example.smartlibrary.model.BookInfo;
 import com.example.smartlibrary.model.PageRequest;
 import com.example.smartlibrary.model.PageResult;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
 public class BookService {
     @Autowired
     private BookInfoMapper bookInfoMapper;
@@ -26,5 +28,18 @@ public class BookService {
             }
         }
         return new PageResult<>(bookInfos,count,pageRequest);
+    }
+    //新增图书信息
+    public Integer addBook(BookInfo bookInfo) {
+        Integer result = 0;
+        try{
+           result = bookInfoMapper.insertBook(bookInfo);
+            if (result <= 0){
+                log.error("新增图书信息失败,bookInfo:{}",bookInfo);
+            }
+        }catch (Exception e){
+            log.error("新增图书信息错误,e{}",e);
+        }
+        return result;
     }
 }

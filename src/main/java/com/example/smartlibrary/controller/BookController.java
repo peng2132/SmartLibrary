@@ -6,6 +6,7 @@ import com.example.smartlibrary.model.PageResult;
 import com.example.smartlibrary.service.BookService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,4 +30,23 @@ public class BookController {
         }
         return bookInfoPageResult;
     }
+    @RequestMapping("addBook")
+    public String addBook(BookInfo bookInfo){
+        log.info("新增图书信息,bookInfo:{}",bookInfo);
+        //参数校验
+        if(!StringUtils.hasLength(bookInfo.getBookName()) ||
+                !StringUtils.hasLength(bookInfo.getAuthor()) ||
+                bookInfo.getCount()<=0 ||
+                bookInfo.getPrice() == null ||
+                !StringUtils.hasLength(bookInfo.getPublish())){
+            return "参数错误";
+        }
+        Integer result = bookService.addBook(bookInfo);
+        if(result <= 0){
+            log.error("新增图书信息失败,bookInfo:{}",bookInfo);
+            return "添加失败，请联系管理员";
+        }
+        return "";
+    }
+
 }
