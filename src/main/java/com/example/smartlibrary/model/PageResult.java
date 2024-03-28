@@ -11,6 +11,8 @@ public class PageResult<T> {
     //总记录数
     private Integer total;
 
+
+
     private PageRequest pageRequest;
 
     public PageResult(List<T> records, Integer total,PageRequest pageRequest) {

@@ -54,8 +54,16 @@
                 type: "get",
                 url: "/book/getBookListByPage" + location.search,
                 success: function (result) {
+                    //真实的前端处理逻辑, 要比咱们代码复杂
+                    if (result.code == "UNLOGIN") {
+                        location.href = "login.html";
+                        return;
+                    }
+
                     var finalHtml = "";
-                    for (var book of result.records) {
+                    //加载列表
+                    var pageResult = result.data;
+                    for (var book of pageResult.records) {
                         //根据每一条记录去拼接html, 也就是一个tr
                         finalHtml += '<tr>';
                         finalHtml += '<td><input type="checkbox" name="selectBook" value="' + book.id + '" id="selectBook" class="book-select"></td>';
@@ -71,13 +79,15 @@
                         finalHtml += '<a href="javascript:void(0)" onclick="deleteBook(' + book.id + ')">删除</a>';
                         finalHtml += '</div></td></tr>';
                     }
+
                     $("tbody").html(finalHtml);
+
                     //翻页信息
                     $("#pageContainer").jqPaginator({
-                        totalCounts: result.total, //总记录数
+                        totalCounts: pageResult.total, //总记录数
                         pageSize: 10,    //每页的个数
                         visiblePages: 5, //可视页数
-                        currentPage: result.pageRequest.currentPage,  //当前页码
+                        currentPage: pageResult.pageRequest.currentPage,  //当前页码
                         first: '<li class="page-item"><a class="page-link">首页</a></li>',
                         prev: '<li class="page-item"><a class="page-link" href="javascript:void(0);">上一页<\/a><\/li>',
                         next: '<li class="page-item"><a class="page-link" href="javascript:void(0);">下一页<\/a><\/li>',
@@ -117,12 +127,20 @@
                         status: 0
                     },
                     success: function (result) {
-                        if (result = "") {
+                        if (result != null && result.code == "SUCCESS" && result.data == "") {
                             //删除成功
                             location.href = "book_list.html";
                         } else {
                             alert(result);
                         }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                        //用户未登录
+                        if (error != null && error.status == 401) {
+                            location.href = "login.html";
+                        }
+
                     }
                 });
 

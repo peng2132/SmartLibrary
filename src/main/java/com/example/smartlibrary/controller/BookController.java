@@ -1,8 +1,8 @@
 package com.example.smartlibrary.controller;
 
-import com.example.smartlibrary.model.BookInfo;
-import com.example.smartlibrary.model.PageRequest;
-import com.example.smartlibrary.model.PageResult;
+import com.example.smartlibrary.constant.Constants;
+import com.example.smartlibrary.enums.ResultCode;
+import com.example.smartlibrary.model.*;
 import com.example.smartlibrary.service.BookService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,18 +23,25 @@ public class BookController {
     @Autowired
     private BookService bookService;
     @RequestMapping("getBookListByPage")
-    public PageResult<BookInfo> getBookListByPage(PageRequest pageRequest) {
+    public Result getBookListByPage(PageRequest pageRequest, HttpSession session) {
         log.info("查询翻页信息,pageRequest:{}",pageRequest);
+        //用户登录校验
+        UserInfo userInfo = (UserInfo) session.getAttribute(Constants.SESSION_USER_KEY);
+        if(userInfo == null || userInfo.getId()<=0){
+            return Result.unlogin();
+        }
+        //校验成功
         if(pageRequest.getPageSize()<0||pageRequest.getCurrentPage()<1){
             return null;
         }
         PageResult<BookInfo> bookInfoPageResult = null;
         try{
             bookInfoPageResult =  bookService.getBookListByPage(pageRequest);
+            return Result.success(bookInfoPageResult);
         }catch (Exception e){
             log.error("查询翻页信息错误,e{}",e);
         }
-        return bookInfoPageResult;
+        return Result.fail("查询失败",bookInfoPageResult);
     }
     @RequestMapping("addBook")
     public String addBook(BookInfo bookInfo){

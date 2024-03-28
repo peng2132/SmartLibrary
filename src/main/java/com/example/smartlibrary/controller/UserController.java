@@ -2,6 +2,7 @@ package com.example.smartlibrary.controller;
 
 
 import com.example.smartlibrary.model.UserInfo;
+import com.example.smartlibrary.constant.Constants;
 import com.example.smartlibrary.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -27,7 +28,7 @@ public class UserController {
         }
         if(password.equals(userInfo.getPassword())){
             userInfo.setPassword(null);
-            session.setAttribute("userName", userInfo);
+            session.setAttribute(Constants.SESSION_USER_KEY, userInfo);
             return true;
         }
         return false;
