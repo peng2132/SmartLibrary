@@ -7,8 +7,13 @@ import com.example.smartlibrary.service.BookService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Arrays;
+import java.util.List;
 
 @RequestMapping("/book")
 @RestController
@@ -67,6 +72,16 @@ public class BookController {
         if(result <= 0){
             log.error("更新图书信息失败,bookInfo:{}",bookInfo);
             return "更新失败，请联系管理员";
+        }
+        return "";
+    }
+    @RequestMapping("batchDelete")
+    public String batchDelete(@RequestParam List<Integer> ids){
+        log.info("批量删除图书信息,ids:{}",ids);
+        Integer result = bookService.batchDelete(ids);
+        if(result <= 0){
+            log.error("批量删除图书信息失败,ids:{}",ids);
+            return "删除失败，请联系管理员";
         }
         return "";
     }

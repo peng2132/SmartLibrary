@@ -27,4 +27,6 @@ public interface BookInfoMapper {
     BookInfo selectBookById(@Param("id") Integer id);
     //修改图书信息
     Integer updateBook(BookInfo bookInfo);
+    //批量删除图书
+    Integer batchDelete(@Param("ids")List <Integer> ids);
 }
