@@ -26,10 +26,11 @@ public class BookController {
     public Result getBookListByPage(PageRequest pageRequest, HttpSession session) {
         log.info("查询翻页信息,pageRequest:{}",pageRequest);
         //用户登录校验
-        UserInfo userInfo = (UserInfo) session.getAttribute(Constants.SESSION_USER_KEY);
-        if(userInfo == null || userInfo.getId()<=0){
-            return Result.unlogin();
-        }
+//        UserInfo userInfo = (UserInfo) session.getAttribute(Constants.SESSION_USER_KEY);
+//        if(userInfo == null || userInfo.getId()<=0){
+//            return Result.unlogin();
+//        }
+
         //校验成功
         if(pageRequest.getPageSize()<0||pageRequest.getCurrentPage()<1){
             return null;

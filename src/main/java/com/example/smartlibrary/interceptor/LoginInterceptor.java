@@ -23,6 +23,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 return true;
             }
         }
+        response.setStatus(401);//未认证登录
         return false;
     }
 }
