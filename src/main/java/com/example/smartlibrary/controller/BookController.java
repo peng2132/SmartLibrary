@@ -75,12 +75,13 @@ public class BookController {
        return null;
     }
     @RequestMapping("updateBook")
+
     public String updateBook(BookInfo bookInfo){
-        log.info("更新图书信息,bookInfo:{}",bookInfo);
+        log.info("接收到更新图书的请求, bookInfo:{}",bookInfo);
         Integer result = bookService.updateBook(bookInfo);
-        if(result <= 0){
-            log.error("更新图书信息失败,bookInfo:{}",bookInfo);
-            return "更新失败，请联系管理员";
+        if (result == 0){
+            log.error("更新图书失败, 请联系管理员");
+            return "更新图书失败, 请联系管理员";
         }
         return "";
     }
@@ -94,4 +95,5 @@ public class BookController {
         }
         return "";
     }
+
 }
