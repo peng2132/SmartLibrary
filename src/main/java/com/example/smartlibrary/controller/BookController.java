@@ -44,7 +44,7 @@ public class BookController {
         }
         return Result.fail("查询失败",bookInfoPageResult);
     }
-    @RequestMapping("addBook")
+    @RequestMapping(value = "addBook",produces = "application/json;charset=UTF-8" )
     public String addBook(BookInfo bookInfo){
         log.info("新增图书信息,bookInfo:{}",bookInfo);
         //参数校验
@@ -74,7 +74,7 @@ public class BookController {
         }
        return null;
     }
-    @RequestMapping("updateBook")
+    @RequestMapping(value = "updateBook",produces = "application/json;charset=UTF-8")
 
     public String updateBook(BookInfo bookInfo){
         log.info("接收到更新图书的请求, bookInfo:{}",bookInfo);
@@ -85,7 +85,8 @@ public class BookController {
         }
         return "";
     }
-    @RequestMapping("batchDelete")
+    //设置返回为json格式
+    @RequestMapping(value = "batchDelete",produces = "application/json;charset=UTF-8")
     public String batchDelete(@RequestParam List<Integer> ids){
         log.info("批量删除图书信息,ids:{}",ids);
         Integer result = bookService.batchDelete(ids);
